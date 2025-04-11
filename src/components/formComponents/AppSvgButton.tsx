@@ -20,7 +20,7 @@ export const AppSvgButton: FC<AppSvgButtonProps> = ({
       aria-label="LumiColor"
       size="small"
       onClick={() => onChange(internValue)}
-      sx={{ bgcolor: value === internValue ? "primary.dark" : "none" }}
+      sx={{ bgcolor: value === internValue ? "primary.dark" : "#f2f4f1" }}
     >
       {children}
     </IconButton>
