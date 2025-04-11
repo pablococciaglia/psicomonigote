@@ -1,4 +1,4 @@
-import dayjs, { type Dayjs } from "dayjs"
+import dayjs from "dayjs"
 import { Controller, type SubmitHandler, useForm } from "react-hook-form"
 import { useNavigate } from "react-router"
 import { Box, Stack } from "@mui/material"
@@ -10,33 +10,46 @@ import { AppDatePicker } from "../components/formComponents/AppDatePicker"
 import { AppRadioButton } from "../components/formComponents/AppRadioButton"
 import { AppSeparator } from "../components/formComponents/AppSeparator"
 import { AppText } from "../components/formComponents/AppText"
-
-type Inputs = {
-  gender: Gender | undefined
-  age: Dayjs | undefined
-}
+import { useAppDispatch, useAppSelector } from "../app/hooks"
+import {
+  selectGenderAge,
+  selectIsCorrectProcess,
+  updateAuthFormValues,
+} from "../app/slices/authSlice"
+import type { InputsGenderAge } from "../app/slices/authTypes"
+import { RoutesNames } from "../app/Routes"
+import { AlreadyHaveAccount } from "./AlreadyHaveAccount"
+import { useEffect } from "react"
 
 export const GenderAge = () => {
+  const initialState = useAppSelector(selectGenderAge)
+  const isCorrectProcess = useAppSelector(selectIsCorrectProcess)
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const initialState: Inputs = {
-    gender: undefined,
-    age: undefined,
-  }
+
+  useEffect(() => {
+    if (!isCorrectProcess) {
+      navigate(`../${RoutesNames.personalDataRegister}`)
+    }
+  }, [isCorrectProcess, navigate])
+
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>({
+  } = useForm<InputsGenderAge>({
     values: initialState,
   })
-  const onSubmit: SubmitHandler<Inputs> = data =>
-    console.log({
-      gender: data.gender,
-      age: dayjs(data.age).format("DD-MM-YYYY"),
-    })
-
+  const onSubmit: SubmitHandler<InputsGenderAge> = data => {
+    navigate(`../${RoutesNames.lumiRegister}`)
+    dispatch(updateAuthFormValues(data))
+  }
+  const goBack = () => {
+    navigate(`../${RoutesNames.personalDataRegister}`)
+  }
   return (
     <>
+      <button onClick={goBack}>va hacia atras</button>
       <Box
         sx={{
           backgroundColor: "white",
@@ -111,18 +124,7 @@ export const GenderAge = () => {
           </Stack>
         </form>
       </Box>
-      <Stack spacing={2} alignItems={"center"}>
-        <AppText text="¿Ya tienes cuenta?" />
-
-        <AppButton
-          width={"fit-content"}
-          text="Ingresa aquí"
-          type="button"
-          onClick={() => {
-            navigate("../login")
-          }}
-        />
-      </Stack>
+      <AlreadyHaveAccount />
     </>
   )
 }

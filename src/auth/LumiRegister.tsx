@@ -1,22 +1,24 @@
 import { Controller, type SubmitHandler, useForm } from "react-hook-form"
 import { Box, Stack } from "@mui/material"
-import { Gender, LumiColor, LumiName } from "../Common/Types"
+import { Gender, LumiName } from "../Common/Types"
 import { AppButton } from "../components/formComponents/AppButton"
 import { AppRadioButton } from "../components/formComponents/AppRadioButton"
 import { AppSeparator } from "../components/formComponents/AppSeparator"
 import { AppText } from "../components/formComponents/AppText"
 import { useNavigate } from "react-router"
 import { AppSvgButton } from "../components/formComponents/AppSvgButton"
-import type { CSSProperties } from "react"
+import { useEffect, type CSSProperties } from "react"
 import { lumis1 } from "../assets/lumis/lumis"
 import { AppInputText } from "../components/formComponents/AppInputText"
-
-type Inputs = {
-  gender: Gender | undefined
-  lumiName: LumiName
-  customName: string | undefined
-  color: LumiColor
-}
+import type { LumiInputs } from "../app/slices/authTypes"
+import { useAppDispatch, useAppSelector } from "../app/hooks"
+import {
+  selectIsCorrectProcess,
+  selectLumiParams,
+  updateAuthFormValues,
+} from "../app/slices/authSlice"
+import { AlreadyHaveAccount } from "./AlreadyHaveAccount"
+import { RoutesNames } from "../app/Routes"
 
 const iconStyle: CSSProperties = {
   height: "43px",
@@ -24,32 +26,33 @@ const iconStyle: CSSProperties = {
 }
 
 export const LumiRegister = () => {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const initialState: Inputs = {
-    gender: undefined,
-    lumiName: LumiName.lumi,
-    customName: "",
-    color: LumiColor.white,
-  }
+  const initialState = useAppSelector(selectLumiParams)
+  const isCorrectProcess = useAppSelector(selectIsCorrectProcess)
 
+  useEffect(() => {
+    if (!isCorrectProcess) {
+      navigate(`../${RoutesNames.personalDataRegister}`)
+    }
+  }, [isCorrectProcess, navigate])
   const {
     watch,
     register,
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>({
+  } = useForm<LumiInputs>({
     values: initialState,
   })
-  const onSubmit: SubmitHandler<Inputs> = data =>
-    console.log({
-      lumiColor: data.color,
-      lumiName:
-        data.lumiName === LumiName.lumi ? LumiName.lumi : data.customName,
-      lumiSex: data.gender,
-    })
+  const onSubmit: SubmitHandler<LumiInputs> = data =>
+    dispatch(updateAuthFormValues(data))
+  const goBack = () => {
+    navigate(`../${RoutesNames.genderAgeRegister}`)
+  }
   return (
     <>
+      <button onClick={goBack}>va hacia atras</button>
       <Box
         sx={{
           backgroundColor: "white",
@@ -67,7 +70,7 @@ export const LumiRegister = () => {
                 required: { value: true, message: "Seleccione un género" },
               }}
               control={control}
-              name="gender"
+              name="lumiGender"
               render={({ field: { onChange, value } }) => (
                 <Stack
                   spacing={2}
@@ -95,7 +98,7 @@ export const LumiRegister = () => {
                 </Stack>
               )}
             />
-            {errors.gender?.message && errors.gender?.message}
+            {errors.lumiGender?.message && errors.lumiGender?.message}
             <AppText text="¿Quieres personalizar mi nombre?" mt />
             <AppSeparator />
             <Controller
@@ -185,18 +188,7 @@ export const LumiRegister = () => {
           </Stack>
         </form>
       </Box>
-      <Stack spacing={2} alignItems={"center"}>
-        <AppText text="¿Ya tienes cuenta?" />
-
-        <AppButton
-          width={"fit-content"}
-          text="Ingresa aquí"
-          type="button"
-          onClick={() => {
-            navigate("../login")
-          }}
-        />
-      </Stack>
+      <AlreadyHaveAccount />
     </>
   )
 }

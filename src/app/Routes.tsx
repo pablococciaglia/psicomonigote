@@ -9,6 +9,13 @@ import { Diario } from "../diario/Diario"
 import { GenderAge } from "../auth/GenderAge"
 import { LumiRegister } from "../auth/LumiRegister"
 
+export enum RoutesNames {
+  login = "login",
+  personalDataRegister = "personal-data-register",
+  genderAgeRegister = "gender-age-register",
+  lumiRegister = "lumi-register",
+}
+
 export const AppRoutes = () => {
   return (
     <Routes>
@@ -17,10 +24,10 @@ export const AppRoutes = () => {
       <Route path="videos" element={<Videos />} />
       <Route path="diario" element={<Diario />} />
       <Route element={<AuthLayout />}>
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="register2" element={<GenderAge />} />
-        <Route path="register3" element={<LumiRegister />} />
+        <Route path={RoutesNames.login} element={<Login />} />
+        <Route path={RoutesNames.personalDataRegister} element={<Register />} />
+        <Route path={RoutesNames.genderAgeRegister} element={<GenderAge />} />
+        <Route path={RoutesNames.lumiRegister} element={<LumiRegister />} />
       </Route>
     </Routes>
   )

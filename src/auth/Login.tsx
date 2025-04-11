@@ -3,6 +3,7 @@ import { useForm, type SubmitHandler } from "react-hook-form"
 import { AppButton } from "../components/formComponents/AppButton"
 import { useNavigate } from "react-router"
 import { AppInputText } from "../components/formComponents/AppInputText"
+import { RoutesNames } from "../app/Routes"
 
 type Inputs = {
   email: string
@@ -71,7 +72,7 @@ export const Login = () => {
           text="Regístrate aquí"
           type="button"
           onClick={() => {
-            navigate("../register")
+            navigate(`../${RoutesNames.personalDataRegister}`)
           }}
         />
       </Stack>
