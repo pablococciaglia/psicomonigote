@@ -1,10 +1,10 @@
 import { Button, styled } from "@mui/material"
 import type { FC } from "react"
-import type { Gender } from "../../Common/Types"
+import type { LumiName, Gender } from "../../Common/Types"
 
 interface AppRadioButtonProps {
-  internValue: Gender
-  value: Gender | undefined
+  internValue: Gender | LumiName
+  value: Gender | LumiName | undefined
   show: string
   onChange: (...event: any[]) => void
 }

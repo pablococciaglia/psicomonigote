@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_11" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 329 338.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: #231f20;
+      }
+
+      .cls-3 {
+        fill: #9f73e5;
+      }
+
+      .cls-4 {
+        fill: #9fd9db;
+      }
+
+      .cls-5 {
+        fill: #ac7aed;
+      }
+    </style>
+  </defs>
+  <ellipse class="cls-3" cx="283.56" cy="216.07" rx="28.43" ry="42.63" transform="translate(-71.89 188.73) rotate(-32.91)"/>
+  <ellipse class="cls-3" cx="199.55" cy="269.11" rx="28.43" ry="42.63"/>
+  <ellipse class="cls-3" cx="42.41" cy="216.56" rx="42.63" ry="28.43" transform="translate(-162.44 134.51) rotate(-57.09)"/>
+  <ellipse class="cls-3" cx="126.42" cy="269.6" rx="28.43" ry="42.63"/>
+  <circle class="cls-5" cx="162.99" cy="155.88" r="137.93"/>
+  <path class="cls-1" d="M203.77,88.16c-9.6,0-18.64,2.58-26.61,7.14-3.95,1.73-8.48,2.73-13.3,2.73s-9.27-.97-13.2-2.67c-7.99-4.59-17.08-7.2-26.71-7.2-32.05,0-58.04,28.68-58.04,64.07,0,25.77,13.79,47.98,33.67,58.14,16.53,9.98,38.69,16.1,63.07,16.1.41,0,.81-.02,1.21-.02.41,0,.81.02,1.21.02,24.38,0,46.54-6.12,63.07-16.1,19.87-10.17,33.67-32.37,33.67-58.14,0-35.38-25.98-64.07-58.04-64.07Z"/>
+  <circle class="cls-4" cx="216.83" cy="146.28" r="24.52"/>
+  <circle class="cls-2" cx="216.83" cy="146.28" r="21.59"/>
+  <ellipse class="cls-1" cx="222.27" cy="138.32" rx="7.24" ry="9.05" transform="translate(-23.05 229.72) rotate(-52.33)"/>
+  <circle class="cls-4" cx="109.1" cy="146.28" r="24.52"/>
+  <circle class="cls-2" cx="109.1" cy="146.28" r="21.59"/>
+  <ellipse class="cls-1" cx="114.55" cy="138.32" rx="7.24" ry="9.05" transform="translate(-64.94 144.45) rotate(-52.33)"/>
+  <ellipse class="cls-2" cx="163.63" cy="159.52" rx="12.5" ry="9.5"/>
+</svg>

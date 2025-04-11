@@ -7,6 +7,7 @@ import { About } from "../About/About"
 import { Videos } from "../videos/Videos"
 import { Diario } from "../diario/Diario"
 import { GenderAge } from "../auth/GenderAge"
+import { LumiRegister } from "../auth/LumiRegister"
 
 export const AppRoutes = () => {
   return (
@@ -19,6 +20,7 @@ export const AppRoutes = () => {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="register2" element={<GenderAge />} />
+        <Route path="register3" element={<LumiRegister />} />
       </Route>
     </Routes>
   )
