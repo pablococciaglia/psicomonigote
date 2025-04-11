@@ -60,7 +60,7 @@ export const AppDatePicker: FC<AppDatePickerProps> = ({ onChange, value }) => {
         },
       ]}
       label={"Seleccione fecha de nacimiento"}
-      views={["day", "month", "year"]}
+      views={["year", "month", "day"]}
       format="DD/MM/YYYY"
       value={value ? dayjs(value, "DD-MM-YYYY") : value}
       maxDate={dayjs().subtract(18, "years")}
