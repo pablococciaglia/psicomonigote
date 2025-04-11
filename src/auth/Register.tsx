@@ -129,7 +129,7 @@ export const Register = () => {
                         <Checkbox
                           disableRipple
                           onChange={onChange}
-                          value={value}
+                          checked={value}
                           sx={{
                             color: "background.default",
                             "&.Mui-checked": {
@@ -177,59 +177,6 @@ export const Register = () => {
                   </FormControl>
                 )}
               />
-              <FormControl error={!!errors.terms?.type}>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      disableRipple
-                      {...register("terms", {
-                        validate: val => val,
-                      })}
-                      sx={{
-                        color: "background.default",
-                        "&.Mui-checked": {
-                          color: "background.default",
-                        },
-                      }}
-                    />
-                  }
-                  label=<FormLabel
-                    sx={{
-                      color: "background.default",
-                      fontSize: 13,
-                    }}
-                  >
-                    Acepto los{" "}
-                    <b
-                      style={{ cursor: "pointer" }}
-                      onClick={() =>
-                        dispatch(
-                          openModal({
-                            title: "Términos y condiciones",
-                            text: "terminos y condiciones texto largo",
-                          }),
-                        )
-                      }
-                    >
-                      Términos y condiciones
-                    </b>{" "}
-                    y estoy deacuerdo con las{" "}
-                    <b
-                      style={{ cursor: "pointer" }}
-                      onClick={() =>
-                        dispatch(
-                          openModal({
-                            title: "Políticas de privacidad",
-                            text: privacyPolicy,
-                          }),
-                        )
-                      }
-                    >
-                      Políticas de privacidad
-                    </b>
-                  </FormLabel>
-                />
-              </FormControl>
             </div>
 
             <AppButton loading={false} text="siguiente" type="submit" />

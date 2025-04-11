@@ -1,10 +1,10 @@
 import { DatePicker } from "@mui/x-date-pickers/DatePicker"
-import dayjs, { type Dayjs } from "dayjs"
+import dayjs from "dayjs"
 import type { FC } from "react"
 
 interface AppDatePickerProps {
   onChange: (...event: any[]) => void
-  value: Dayjs | undefined
+  value: string | undefined
 }
 
 export const AppDatePicker: FC<AppDatePickerProps> = ({ onChange, value }) => {
@@ -62,7 +62,7 @@ export const AppDatePicker: FC<AppDatePickerProps> = ({ onChange, value }) => {
       label={"Seleccione fecha de nacimiento"}
       views={["day", "month", "year"]}
       format="DD/MM/YYYY"
-      value={value}
+      value={value ? dayjs(value, "DD-MM-YYYY") : value}
       maxDate={dayjs().subtract(18, "years")}
       onChange={onChange}
     />

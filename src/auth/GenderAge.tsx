@@ -42,7 +42,12 @@ export const GenderAge = () => {
   })
   const onSubmit: SubmitHandler<InputsGenderAge> = data => {
     navigate(`../${RoutesNames.lumiRegister}`)
-    dispatch(updateAuthFormValues(data))
+    dispatch(
+      updateAuthFormValues({
+        ...data,
+        age: dayjs(data.age).format("DD-MM-YYYY"),
+      }),
+    )
   }
   const goBack = () => {
     navigate(`../${RoutesNames.personalDataRegister}`)

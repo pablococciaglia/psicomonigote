@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks"
 import {
   selectIsCorrectProcess,
   selectLumiParams,
+  submitAuthForm,
   updateAuthFormValues,
 } from "../app/slices/authSlice"
 import { AlreadyHaveAccount } from "./AlreadyHaveAccount"
@@ -45,8 +46,10 @@ export const LumiRegister = () => {
   } = useForm<LumiInputs>({
     values: initialState,
   })
-  const onSubmit: SubmitHandler<LumiInputs> = data =>
+  const onSubmit: SubmitHandler<LumiInputs> = data => {
     dispatch(updateAuthFormValues(data))
+    dispatch(submitAuthForm())
+  }
   const goBack = () => {
     navigate(`../${RoutesNames.genderAgeRegister}`)
   }

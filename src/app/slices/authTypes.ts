@@ -1,9 +1,8 @@
-import type { Dayjs } from "dayjs"
 import type { Gender, LumiColor, LumiName } from "../../Common/Types"
 
 export type InputsGenderAge = {
   gender: Gender | undefined
-  age: Dayjs | undefined //dayjs(data.age).format("DD-MM-YYYY")
+  age: string | undefined
 }
 
 export type LumiInputs = {
