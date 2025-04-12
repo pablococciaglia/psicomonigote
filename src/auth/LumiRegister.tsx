@@ -54,144 +54,143 @@ export const LumiRegister = () => {
     navigate(`../${RoutesNames.genderAgeRegister}`)
   }
   return (
-    <>
+    <Box
+      sx={{
+        backgroundColor: "white",
+        padding: 3,
+        borderRadius: 6,
+        marginBottom: 5,
+      }}
+    >
+      {" "}
       <button onClick={goBack}>va hacia atras</button>
-      <Box
-        sx={{
-          backgroundColor: "white",
-          padding: 3,
-          borderRadius: 6,
-          marginBottom: 5,
-        }}
-      >
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={2}>
-            <AppText text="¿Qué género te gustaría que tuviera?" mt />
-            <AppSeparator />
-            <Controller
-              rules={{
-                required: { value: true, message: "Seleccione un género" },
-              }}
-              control={control}
-              name="lumiGender"
-              render={({ field: { onChange, value } }) => (
-                <Stack
-                  spacing={2}
-                  direction={"row"}
-                  sx={{ justifyContent: "center", alignItems: "center" }}
-                >
-                  <AppRadioButton
-                    internValue={Gender.FEMALE}
-                    onChange={onChange}
-                    value={value}
-                    show="Femenino"
-                  />
-                  <AppRadioButton
-                    internValue={Gender.MALE}
-                    onChange={onChange}
-                    value={value}
-                    show="Masculino"
-                  />
-                  <AppRadioButton
-                    internValue={Gender.NO_BINARY}
-                    onChange={onChange}
-                    value={value}
-                    show="No binario"
-                  />
-                </Stack>
-              )}
-            />
-            {errors.lumiGender?.message && errors.lumiGender?.message}
-            <AppText text="¿Quieres personalizar mi nombre?" mt />
-            <AppSeparator />
-            <Controller
-              rules={{
-                required: { value: true, message: "Seleccione un género" },
-              }}
-              control={control}
-              name="lumiName"
-              render={({ field: { onChange, value } }) => (
-                <Stack
-                  spacing={2}
-                  direction={"row"}
-                  sx={{ justifyContent: "center", alignItems: "center" }}
-                >
-                  <AppRadioButton
-                    internValue={LumiName.lumi}
-                    onChange={onChange}
-                    value={value}
-                    show="Me gusta Lumi"
-                  />
-                  <AppRadioButton
-                    internValue={LumiName.change}
-                    onChange={onChange}
-                    value={value}
-                    show="Cambiar"
-                  />
-                </Stack>
-              )}
-            />
-            {watch("lumiName") === LumiName.change && (
-              <AppInputText
-                type="text"
-                error={!!errors.customName?.type}
-                label="Elige un nuevo nombre"
-                helperText={errors.customName?.message}
-                registerField={register("customName", {
-                  required: "El nombre es requerido",
-                  maxLength: {
-                    value: 15,
-                    message: "Debe tener un máximo de 15 caracteres",
-                  },
-                  validate: val => {
-                    if (!val?.trim()) {
-                      return "El nombre no puede estar vacío"
-                    }
-                  },
-                })}
-              />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Stack spacing={2}>
+          <AppText text="¿Qué género te gustaría que tuviera?" mt />
+          <AppSeparator />
+          <Controller
+            rules={{
+              required: { value: true, message: "Seleccione un género" },
+            }}
+            control={control}
+            name="lumiGender"
+            render={({ field: { onChange, value } }) => (
+              <Stack
+                spacing={2}
+                direction={"row"}
+                sx={{ justifyContent: "center", alignItems: "center" }}
+              >
+                <AppRadioButton
+                  internValue={Gender.FEMALE}
+                  onChange={onChange}
+                  value={value}
+                  show="Femenino"
+                />
+                <AppRadioButton
+                  internValue={Gender.MALE}
+                  onChange={onChange}
+                  value={value}
+                  show="Masculino"
+                />
+                <AppRadioButton
+                  internValue={Gender.NO_BINARY}
+                  onChange={onChange}
+                  value={value}
+                  show="No binario"
+                />
+              </Stack>
             )}
-            {errors.lumiName?.message && errors.lumiName?.message}
-
-            <AppText text="¿Qué color te gustaría que tuviera?" mt />
-            <AppSeparator />
-            <Controller
-              rules={{
-                required: { value: true, message: "Seleccione un color" },
-              }}
-              control={control}
-              name="color"
-              render={({ field: { onChange, value } }) => (
-                <Stack
-                  spacing={1}
-                  direction={"row"}
-                  sx={{ justifyContent: "center", alignItems: "center" }}
-                >
-                  {lumis1.map(lumi => (
-                    <AppSvgButton
-                      key={`lumiRegister${lumi.lumiColor}`}
-                      internValue={lumi.lumiColor}
-                      onChange={onChange}
-                      value={value}
-                    >
-                      <img
-                        src={lumi.icon}
-                        style={iconStyle}
-                        alt={`${lumi.lumiColor}lumi`}
-                      />
-                    </AppSvgButton>
-                  ))}
-                </Stack>
-              )}
+          />
+          {errors.lumiGender?.message && errors.lumiGender?.message}
+          <AppText text="¿Quieres personalizar mi nombre?" mt />
+          <AppSeparator />
+          <Controller
+            rules={{
+              required: { value: true, message: "Seleccione un género" },
+            }}
+            control={control}
+            name="lumiName"
+            render={({ field: { onChange, value } }) => (
+              <Stack
+                spacing={2}
+                direction={"row"}
+                sx={{ justifyContent: "center", alignItems: "center" }}
+              >
+                <AppRadioButton
+                  internValue={LumiName.lumi}
+                  onChange={onChange}
+                  value={value}
+                  show="Me gusta Lumi"
+                />
+                <AppRadioButton
+                  internValue={LumiName.change}
+                  onChange={onChange}
+                  value={value}
+                  show="Cambiar"
+                />
+              </Stack>
+            )}
+          />
+          {watch("lumiName") === LumiName.change && (
+            <AppInputText
+              type="text"
+              error={!!errors.customName?.type}
+              label="Elige un nuevo nombre"
+              helperText={errors.customName?.message}
+              registerField={register("customName", {
+                required: "El nombre es requerido",
+                maxLength: {
+                  value: 15,
+                  message: "Debe tener un máximo de 15 caracteres",
+                },
+                validate: val => {
+                  if (!val?.trim()) {
+                    return "El nombre no puede estar vacío"
+                  }
+                },
+              })}
             />
+          )}
+          {errors.lumiName?.message && errors.lumiName?.message}
 
-            {errors.color?.message && errors.color?.message}
+          <AppText text="¿Qué color te gustaría que tuviera?" mt />
+          <AppSeparator />
+          <Controller
+            rules={{
+              required: { value: true, message: "Seleccione un color" },
+            }}
+            control={control}
+            name="color"
+            render={({ field: { onChange, value } }) => (
+              <Stack
+                spacing={1}
+                direction={"row"}
+                sx={{ justifyContent: "center", alignItems: "center" }}
+              >
+                {lumis1.map(lumi => (
+                  <AppSvgButton
+                    key={`lumiRegister${lumi.lumiColor}`}
+                    internValue={lumi.lumiColor}
+                    onChange={onChange}
+                    value={value}
+                  >
+                    <img
+                      src={lumi.icon}
+                      style={iconStyle}
+                      alt={`${lumi.lumiColor}lumi`}
+                    />
+                  </AppSvgButton>
+                ))}
+              </Stack>
+            )}
+          />
 
-            <AppButton loading={false} text="Finalizar" type="submit" />
-          </Stack>
-        </form>
-      </Box>
+          {errors.color?.message && errors.color?.message}
+
+          <AppButton loading={false} text="Finalizar" type="submit" />
+        </Stack>
+      </form>{" "}
       <AlreadyHaveAccount />
-    </>
+    </Box>
   )
 }

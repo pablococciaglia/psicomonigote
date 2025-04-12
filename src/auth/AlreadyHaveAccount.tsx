@@ -7,10 +7,8 @@ export const AlreadyHaveAccount = () => {
   const navigate = useNavigate()
 
   return (
-    <Stack spacing={2} alignItems={"center"}>
-      <Typography
-        sx={{ color: "background.default", zIndex: 3, fontWeight: 500 }}
-      >
+    <Stack spacing={2} alignItems={"center"} sx={{ mt: "20px" }}>
+      <Typography sx={{ color: "background.default", fontWeight: 500 }}>
         ¿Ya tienes cuenta?
       </Typography>
       <AppButton

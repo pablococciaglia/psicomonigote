@@ -22,7 +22,6 @@ const initialState: AuthSliceState = {
   status: "idle",
 }
 
-// If you are not using async thunks you can use the standalone `createSlice`.
 export const authSlice = createAppSlice({
   name: "auth",
   initialState,
@@ -34,6 +33,11 @@ export const authSlice = createAppSlice({
           ...action.payload,
         }
         state.correctProcess = true
+      },
+    ),
+    changeLumiColor: create.reducer(
+      (state, action: PayloadAction<LumiColor>) => {
+        state.registerForm.color = action.payload
       },
     ),
 
@@ -53,9 +57,8 @@ export const authSlice = createAppSlice({
   },
 })
 
-// Action creators are generated for each case reducer function.
-export const { updateAuthFormValues, submitAuthForm } = authSlice.actions
+export const { updateAuthFormValues, submitAuthForm, changeLumiColor } =
+  authSlice.actions
 
-// Selectors returned by `slice.selectors` take the root state as their first argument.
 export const { selectRegisterForm, selectStatus, selectIsCorrectProcess } =
   authSlice.selectors
