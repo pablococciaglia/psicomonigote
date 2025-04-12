@@ -34,9 +34,9 @@ export const AppInputText: FC<AppInputTextProps> = ({
 }) => {
   return (
     <StyledInput
+      key={`app-input-text${label}`}
       type={type}
       error={error}
-      id="outlined-error"
       label={label}
       helperText={helperText}
       {...registerField}

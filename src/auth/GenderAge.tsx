@@ -12,7 +12,6 @@ import { AppSeparator } from "../components/formComponents/AppSeparator"
 import { AppText } from "../components/formComponents/AppText"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
 import {
-  selectGenderAge,
   selectIsCorrectProcess,
   updateAuthFormValues,
 } from "../app/slices/authSlice"
@@ -20,6 +19,7 @@ import type { InputsGenderAge } from "../app/slices/authTypes"
 import { RoutesNames } from "../app/Routes"
 import { AlreadyHaveAccount } from "./AlreadyHaveAccount"
 import { useEffect } from "react"
+import { selectGenderAge } from "../app/slices/authSelectors"
 
 export const GenderAge = () => {
   const initialState = useAppSelector(selectGenderAge)

@@ -14,12 +14,10 @@ import { useAppDispatch, useAppSelector } from "../app/hooks"
 import { openModal } from "../app/modalSlice"
 import { privacyPolicy } from "../utils/privacyPolicy"
 import type { PersonalDataInputs } from "../app/slices/authTypes"
-import {
-  selectPersonalData,
-  updateAuthFormValues,
-} from "../app/slices/authSlice"
+import { updateAuthFormValues } from "../app/slices/authSlice"
 import { RoutesNames } from "../app/Routes"
 import { AlreadyHaveAccount } from "./AlreadyHaveAccount"
+import { selectPersonalData } from "../app/slices/authSelectors"
 
 export const Register = () => {
   const dispatch = useAppDispatch()

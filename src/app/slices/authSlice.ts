@@ -47,24 +47,7 @@ export const authSlice = createAppSlice({
     }),
   }),
   selectors: {
-    selectGenderAge: auth => ({
-      gender: auth.registerForm.gender,
-      age: auth.registerForm.age,
-    }),
-    selectLumiParams: auth => ({
-      lumiName: auth.registerForm.lumiName,
-      customName: auth.registerForm.customName,
-      color: auth.registerForm.color,
-      lumiGender: auth.registerForm.lumiGender,
-    }),
-    selectPersonalData: auth => ({
-      name: auth.registerForm.name,
-      lastName: auth.registerForm.lastName,
-      email: auth.registerForm.email,
-      password: auth.registerForm.password,
-      repeatPassword: auth.registerForm.repeatPassword,
-      terms: auth.registerForm.terms,
-    }),
+    selectRegisterForm: auth => auth.registerForm,
     selectStatus: auth => auth.status,
     selectIsCorrectProcess: auth => auth.correctProcess,
   },
@@ -74,10 +57,5 @@ export const authSlice = createAppSlice({
 export const { updateAuthFormValues, submitAuthForm } = authSlice.actions
 
 // Selectors returned by `slice.selectors` take the root state as their first argument.
-export const {
-  selectGenderAge,
-  selectStatus,
-  selectLumiParams,
-  selectPersonalData,
-  selectIsCorrectProcess,
-} = authSlice.selectors
+export const { selectRegisterForm, selectStatus, selectIsCorrectProcess } =
+  authSlice.selectors

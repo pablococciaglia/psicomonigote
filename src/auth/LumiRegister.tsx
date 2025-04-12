@@ -14,12 +14,12 @@ import type { LumiInputs } from "../app/slices/authTypes"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
 import {
   selectIsCorrectProcess,
-  selectLumiParams,
   submitAuthForm,
   updateAuthFormValues,
 } from "../app/slices/authSlice"
 import { AlreadyHaveAccount } from "./AlreadyHaveAccount"
 import { RoutesNames } from "../app/Routes"
+import { selectLumiParams } from "../app/slices/authSelectors"
 
 const iconStyle: CSSProperties = {
   height: "43px",
