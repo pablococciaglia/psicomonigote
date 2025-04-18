@@ -1,13 +1,9 @@
 import { Outlet } from "react-router"
 import Grid from "@mui/material/Grid2"
 import { Box } from "@mui/material"
-import { lumis2 } from "../assets/lumis/lumis"
-import { selectLumiParams } from "../app/slices/authSelectors"
-import { useAppSelector } from "../app/hooks"
+import { LumiBox } from "./LumiBox"
 
 export const AuthLayout = () => {
-  const { color } = useAppSelector(selectLumiParams)
-  const lumi = lumis2.find(lumi => lumi.lumiColor === color)
   return (
     <>
       <Grid
@@ -15,8 +11,18 @@ export const AuthLayout = () => {
         rowSpacing={1}
         sx={{ position: "absolute", width: "100vw" }}
       >
-        <Grid size={6} justifyContent={"center"} alignItems={"center"} sx={{}}>
-          <img src={lumi?.icon} alt={`${lumi?.lumiColor}lumi`} />
+        <Grid
+          size={6}
+          display="flex"
+          justifyContent="center"
+          alignItems="end"
+          sx={{
+            height: "75vh",
+            transform: "translateY(4vw)",
+            padding: "0 20px",
+          }}
+        >
+          <LumiBox />
         </Grid>
         <Grid
           size={6}
