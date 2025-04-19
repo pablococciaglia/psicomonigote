@@ -1,25 +1,25 @@
 import { Controller, type SubmitHandler, useForm } from "react-hook-form"
 import { Box, Stack } from "@mui/material"
-import { Gender, LumiName } from "../Common/Types"
-import { AppButton } from "../components/formComponents/AppButton"
-import { AppRadioButton } from "../components/formComponents/AppRadioButton"
-import { AppSeparator } from "../components/formComponents/AppSeparator"
-import { AppText } from "../components/formComponents/AppText"
+import { Gender, LumiName } from "../../Common/Types"
+import { AppButton } from "../../components/formComponents/AppButton"
+import { AppRadioButton } from "../../components/formComponents/AppRadioButton"
+import { AppSeparator } from "../../components/formComponents/AppSeparator"
+import { AppText } from "../../components/formComponents/AppText"
 import { useNavigate } from "react-router"
-import { AppSvgButton } from "../components/formComponents/AppSvgButton"
+import { AppSvgButton } from "../../components/formComponents/AppSvgButton"
 import { useEffect, type CSSProperties } from "react"
-import { lumis1 } from "../assets/lumis/lumis"
-import { AppInputText } from "../components/formComponents/AppInputText"
-import type { LumiInputs } from "../app/slices/authTypes"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { lumis1 } from "../../assets/lumis/lumis"
+import { AppInputText } from "../../components/formComponents/AppInputText"
+import type { LumiInputs } from "../slices/authTypes"
+import { useAppDispatch, useAppSelector } from "../hooks"
 import {
   selectIsCorrectProcess,
   submitAuthForm,
   updateAuthFormValues,
-} from "../app/slices/authSlice"
+} from "../slices/authSlice"
 import { AlreadyHaveAccount } from "./AlreadyHaveAccount"
-import { RoutesNames } from "../app/Routes"
-import { selectLumiParams } from "../app/slices/authSelectors"
+import { RoutesNames } from "../Routes"
+import { selectLumiParams } from "../slices/authSelectors"
 
 const iconStyle: CSSProperties = {
   height: "43px",

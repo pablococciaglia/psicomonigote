@@ -1,13 +1,10 @@
-import { lumis2 } from "../assets/lumis/lumis"
-import {
-  selectLumiParams,
-  selectPersonalData,
-} from "../app/slices/authSelectors"
-import { useAppSelector } from "../app/hooks"
+import { lumis2 } from "../../assets/lumis/lumis"
+import { selectLumiParams, selectPersonalData } from "../slices/authSelectors"
+import { useAppSelector } from "../hooks"
 import { useLocation } from "react-router"
 import { lumiTexts } from "./lumiTexts"
-import type { RoutesNames } from "../app/Routes"
-import { LumiBubble } from "../components/LumiBubble"
+import type { RoutesNames } from "../Routes"
+import { LumiBubble } from "../../components/LumiBubble"
 
 export const LumiBox = () => {
   const { color } = useAppSelector(selectLumiParams)

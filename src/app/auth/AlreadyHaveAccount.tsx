@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material"
-import { AppButton } from "../components/formComponents/AppButton"
-import { RoutesNames } from "../app/Routes"
+import { AppButton } from "../../components/formComponents/AppButton"
+import { RoutesNames } from "../Routes"
 import { useNavigate } from "react-router"
 
 export const AlreadyHaveAccount = () => {

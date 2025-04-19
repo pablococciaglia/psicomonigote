@@ -6,18 +6,18 @@ import {
   FormLabel,
   Stack,
 } from "@mui/material"
-import { AppInputText } from "../components/formComponents/AppInputText"
+import { AppInputText } from "../../components/formComponents/AppInputText"
 import { Controller, useForm, type SubmitHandler } from "react-hook-form"
-import { AppButton } from "../components/formComponents/AppButton"
+import { AppButton } from "../../components/formComponents/AppButton"
 import { useNavigate } from "react-router"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { openModal } from "../app/modalSlice"
-import { privacyPolicy } from "../utils/privacyPolicy"
-import type { PersonalDataInputs } from "../app/slices/authTypes"
-import { updateAuthFormValues } from "../app/slices/authSlice"
-import { RoutesNames } from "../app/Routes"
+import { useAppDispatch, useAppSelector } from "../hooks"
+import { openModal } from "../modalSlice"
+import { privacyPolicy } from "../../utils/privacyPolicy"
+import type { PersonalDataInputs } from "../slices/authTypes"
+import { updateAuthFormValues } from "../slices/authSlice"
+import { RoutesNames } from "../Routes"
 import { AlreadyHaveAccount } from "./AlreadyHaveAccount"
-import { selectPersonalData } from "../app/slices/authSelectors"
+import { selectPersonalData } from "../slices/authSelectors"
 
 export const Register = () => {
   const dispatch = useAppDispatch()

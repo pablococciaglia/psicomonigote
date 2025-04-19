@@ -1,9 +1,16 @@
+import { Navigate } from "react-router"
 import { Outlet } from "react-router"
 import Grid from "@mui/material/Grid2"
 import { Box } from "@mui/material"
 import { LumiBox } from "./LumiBox"
+import { useAppSelector } from "../hooks"
+import { selectUserId } from "../slices/authSlice"
 
 export const AuthLayout = () => {
+  const userId = useAppSelector(selectUserId)
+  if (userId) {
+    return <Navigate to="/" replace />
+  }
   return (
     <>
       <Grid

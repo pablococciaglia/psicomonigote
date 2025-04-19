@@ -1,4 +1,4 @@
-import { RoutesNames } from "../app/Routes"
+import { RoutesNames } from "../Routes"
 
 export const lumiTexts = (route: RoutesNames, name: string) => {
   switch (route) {
@@ -10,6 +10,8 @@ export const lumiTexts = (route: RoutesNames, name: string) => {
       return "TEXTO gender"
     case RoutesNames.lumiRegister:
       return `TEXTO lumi ${name}`
+    case RoutesNames.forgetPass:
+      return "Escribe tu correo electrónico y nosotros te enviaremos a un mensaje para que puedas crear una nueva contraseña"
 
     default:
       return ""
