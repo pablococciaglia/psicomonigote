@@ -20,6 +20,7 @@ import { RoutesNames } from "../Routes"
 import { AlreadyHaveAccount } from "./AlreadyHaveAccount"
 import { useEffect } from "react"
 import { selectGenderAge } from "../slices/authSelectors"
+import { GoBack } from "../../components/formComponents/GoBack"
 
 export const GenderAge = () => {
   const initialState = useAppSelector(selectGenderAge)
@@ -49,9 +50,7 @@ export const GenderAge = () => {
       }),
     )
   }
-  const goBack = () => {
-    navigate(`../${RoutesNames.personalDataRegister}`)
-  }
+
   return (
     <Box
       sx={{
@@ -61,8 +60,7 @@ export const GenderAge = () => {
         marginBottom: 5,
       }}
     >
-      <button onClick={goBack}>va hacia atras</button>
-
+      <GoBack route={RoutesNames.personalDataRegister} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2}>
           <AppText text="Género" mt />

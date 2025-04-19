@@ -1,16 +1,16 @@
 import { Box, Stack } from "@mui/material"
 import { useForm, type SubmitHandler } from "react-hook-form"
 import { AppButton } from "../../components/formComponents/AppButton"
-import { useNavigate } from "react-router"
 import { AppInputText } from "../../components/formComponents/AppInputText"
 import { RoutesNames } from "../Routes"
+import { GoBack } from "../../components/formComponents/GoBack"
+import { AppText } from "../../components/formComponents/AppText"
+import { AppSeparator } from "../../components/formComponents/AppSeparator"
 
 type Input = {
   email: string
 }
 export const ForgetPassword = () => {
-  const navigate = useNavigate()
-
   const initialState: Input = {
     email: "",
   }
@@ -23,14 +23,9 @@ export const ForgetPassword = () => {
     values: initialState,
   })
 
-  const goBack = () => {
-    navigate(`../${RoutesNames.login}`)
-  }
-
   const onSubmit: SubmitHandler<Input> = data => console.log(data)
   return (
     <>
-      <button onClick={goBack}>va hacia atras</button>
       <Box
         sx={{
           backgroundColor: "white",
@@ -39,7 +34,10 @@ export const ForgetPassword = () => {
           marginBottom: 5,
         }}
       >
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <GoBack route={RoutesNames.login} />
+        <AppText text="Recupera tu contraseña" mt />
+        <AppSeparator />
+        <form onSubmit={handleSubmit(onSubmit)} style={{ marginTop: "10px" }}>
           <Stack spacing={2}>
             <AppInputText
               type="email"
