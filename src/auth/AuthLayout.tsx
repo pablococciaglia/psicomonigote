@@ -1,13 +1,13 @@
 import { Outlet } from "react-router"
 import Grid from "@mui/material/Grid2"
 import { Box } from "@mui/material"
-import { lumis2 } from "../assets/lumis/lumis"
+import { lumis1 } from "../assets/lumis/lumis"
 import { selectLumiParams } from "../app/slices/authSelectors"
 import { useAppSelector } from "../app/hooks"
-
+import shadow from "../assets/shadows/shadow1.svg"
 export const AuthLayout = () => {
   const { color } = useAppSelector(selectLumiParams)
-  const lumi = lumis2.find(lumi => lumi.lumiColor === color)
+  const lumi = lumis1.find(lumi => lumi.lumiColor === color)
   return (
     <>
       <Grid
@@ -17,6 +17,7 @@ export const AuthLayout = () => {
       >
         <Grid size={6} justifyContent={"center"} alignItems={"center"} sx={{}}>
           <img src={lumi?.icon} alt={`${lumi?.lumiColor}lumi`} />
+          <img src={shadow} alt={"lumi-shadow"} />
         </Grid>
         <Grid
           size={6}
