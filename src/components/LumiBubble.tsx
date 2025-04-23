@@ -1,4 +1,4 @@
-import { Box } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 import type { FC } from "react"
 interface LumiBubbleProps {
   lumiText: string
@@ -8,12 +8,14 @@ export const LumiBubble: FC<LumiBubbleProps> = ({ lumiText }) => {
     <div>
       <Box
         sx={{
-          backgroundColor: "white",
-          borderRadius: 5,
+          backgroundColor: "primary.dark",
+          borderRadius: 30,
           padding: "20px",
         }}
       >
-        {lumiText}
+        <Typography color="primary.contrastText" fontSize={30}>
+          {lumiText}
+        </Typography>
       </Box>
       <Box
         sx={{
@@ -25,6 +27,7 @@ export const LumiBubble: FC<LumiBubbleProps> = ({ lumiText }) => {
             borderLeft: "10px solid transparent",
             borderRight: "20px solid transparent",
             borderTop: "30px solid white",
+            borderTopColor: "primary.dark",
           },
         }}
       />
