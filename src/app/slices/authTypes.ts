@@ -27,4 +27,6 @@ export interface AuthSliceState {
   registerForm: RegisterForm
   status: "idle" | "loading" | "failed"
   correctProcess: boolean
+  userId: string
+  JWT: string
 }

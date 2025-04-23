@@ -1,13 +1,16 @@
+import { Navigate } from "react-router"
 import { Outlet } from "react-router"
 import Grid from "@mui/material/Grid2"
 import { Box } from "@mui/material"
-import { lumis1 } from "../assets/lumis/lumis"
-import { selectLumiParams } from "../app/slices/authSelectors"
-import { useAppSelector } from "../app/hooks"
-import shadow from "../assets/shadows/shadow1.svg"
+import { LumiBox } from "./LumiBox"
+import { useAppSelector } from "../hooks"
+import { selectUserId } from "../slices/authSlice"
+
 export const AuthLayout = () => {
-  const { color } = useAppSelector(selectLumiParams)
-  const lumi = lumis1.find(lumi => lumi.lumiColor === color)
+  const userId = useAppSelector(selectUserId)
+  if (userId) {
+    return <Navigate to="/" replace />
+  }
   return (
     <>
       <Grid
@@ -15,9 +18,18 @@ export const AuthLayout = () => {
         rowSpacing={1}
         sx={{ position: "absolute", width: "100vw" }}
       >
-        <Grid size={6} justifyContent={"center"} alignItems={"center"} sx={{}}>
-          <img src={lumi?.icon} alt={`${lumi?.lumiColor}lumi`} />
-          <img src={shadow} alt={"lumi-shadow"} />
+        <Grid
+          size={6}
+          display="flex"
+          justifyContent="center"
+          alignItems="end"
+          sx={{
+            height: "75vh",
+            transform: "translateY(4vw)",
+            padding: "0 20px",
+          }}
+        >
+          <LumiBox />
         </Grid>
         <Grid
           size={6}

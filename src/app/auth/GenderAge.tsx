@@ -4,22 +4,23 @@ import { useNavigate } from "react-router"
 import { Box, Stack } from "@mui/material"
 import { LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
-import { Gender } from "../Common/Types"
-import { AppButton } from "../components/formComponents/AppButton"
-import { AppDatePicker } from "../components/formComponents/AppDatePicker"
-import { AppRadioButton } from "../components/formComponents/AppRadioButton"
-import { AppSeparator } from "../components/formComponents/AppSeparator"
-import { AppText } from "../components/formComponents/AppText"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { Gender } from "../../Common/Types"
+import { AppButton } from "../../components/formComponents/AppButton"
+import { AppDatePicker } from "../../components/formComponents/AppDatePicker"
+import { AppRadioButton } from "../../components/formComponents/AppRadioButton"
+import { AppSeparator } from "../../components/formComponents/AppSeparator"
+import { AppText } from "../../components/formComponents/AppText"
+import { useAppDispatch, useAppSelector } from "../hooks"
 import {
   selectIsCorrectProcess,
   updateAuthFormValues,
-} from "../app/slices/authSlice"
-import type { InputsGenderAge } from "../app/slices/authTypes"
-import { RoutesNames } from "../app/Routes"
+} from "../slices/authSlice"
+import type { InputsGenderAge } from "../slices/authTypes"
+import { RoutesNames } from "../Routes"
 import { AlreadyHaveAccount } from "./AlreadyHaveAccount"
 import { useEffect } from "react"
-import { selectGenderAge } from "../app/slices/authSelectors"
+import { selectGenderAge } from "../slices/authSelectors"
+import { GoBack } from "../../components/formComponents/GoBack"
 
 export const GenderAge = () => {
   const initialState = useAppSelector(selectGenderAge)
@@ -49,9 +50,7 @@ export const GenderAge = () => {
       }),
     )
   }
-  const goBack = () => {
-    navigate(`../${RoutesNames.personalDataRegister}`)
-  }
+
   return (
     <Box
       sx={{
@@ -61,8 +60,7 @@ export const GenderAge = () => {
         marginBottom: 5,
       }}
     >
-      <button onClick={goBack}>va hacia atras</button>
-
+      <GoBack route={RoutesNames.personalDataRegister} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2}>
           <AppText text="Género" mt />

@@ -1,9 +1,9 @@
 import { Box, Stack, Typography } from "@mui/material"
 import { useForm, type SubmitHandler } from "react-hook-form"
-import { AppButton } from "../components/formComponents/AppButton"
+import { AppButton } from "../../components/formComponents/AppButton"
 import { useNavigate } from "react-router"
-import { AppInputText } from "../components/formComponents/AppInputText"
-import { RoutesNames } from "../app/Routes"
+import { AppInputText } from "../../components/formComponents/AppInputText"
+import { RoutesNames } from "../Routes"
 
 type Inputs = {
   email: string
@@ -62,6 +62,18 @@ export const Login = () => {
             <AppButton loading={false} text="Iniciar sesión" type="submit" />
           </Stack>
         </form>
+        <Typography
+          sx={{
+            color: "background.default",
+            cursor: "pointer",
+            marginTop: "5px",
+          }}
+          onClick={() => {
+            navigate(`../${RoutesNames.forgetPass}`)
+          }}
+        >
+          ¿Has olvidado tu contraseña?
+        </Typography>
       </Box>
       <Stack spacing={2} alignItems={"center"}>
         <Typography sx={{ color: "background.default" }}>

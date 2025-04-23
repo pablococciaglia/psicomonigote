@@ -1,25 +1,27 @@
 import { Controller, type SubmitHandler, useForm } from "react-hook-form"
 import { Box, Stack } from "@mui/material"
-import { Gender, LumiName } from "../Common/Types"
-import { AppButton } from "../components/formComponents/AppButton"
-import { AppRadioButton } from "../components/formComponents/AppRadioButton"
-import { AppSeparator } from "../components/formComponents/AppSeparator"
-import { AppText } from "../components/formComponents/AppText"
+import { Gender, LumiName } from "../../Common/Types"
+import { AppButton } from "../../components/formComponents/AppButton"
+import { AppRadioButton } from "../../components/formComponents/AppRadioButton"
+import { AppSeparator } from "../../components/formComponents/AppSeparator"
+import { AppText } from "../../components/formComponents/AppText"
 import { useNavigate } from "react-router"
-import { AppSvgButton } from "../components/formComponents/AppSvgButton"
+import { AppSvgButton } from "../../components/formComponents/AppSvgButton"
 import { useEffect, type CSSProperties } from "react"
-import { lumis1 } from "../assets/lumis/lumis"
-import { AppInputText } from "../components/formComponents/AppInputText"
-import type { LumiInputs } from "../app/slices/authTypes"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { lumis1 } from "../../assets/lumis/lumis"
+import { AppInputText } from "../../components/formComponents/AppInputText"
+import type { LumiInputs } from "../slices/authTypes"
+import { useAppDispatch, useAppSelector } from "../hooks"
 import {
+  changeLumiColor,
   selectIsCorrectProcess,
   submitAuthForm,
   updateAuthFormValues,
-} from "../app/slices/authSlice"
+} from "../slices/authSlice"
 import { AlreadyHaveAccount } from "./AlreadyHaveAccount"
-import { RoutesNames } from "../app/Routes"
-import { selectLumiParams } from "../app/slices/authSelectors"
+import { RoutesNames } from "../Routes"
+import { selectLumiParams } from "../slices/authSelectors"
+import { GoBack } from "../../components/formComponents/GoBack"
 
 const iconStyle: CSSProperties = {
   height: "43px",
@@ -50,9 +52,7 @@ export const LumiRegister = () => {
     dispatch(updateAuthFormValues(data))
     dispatch(submitAuthForm())
   }
-  const goBack = () => {
-    navigate(`../${RoutesNames.genderAgeRegister}`)
-  }
+
   return (
     <Box
       sx={{
@@ -62,8 +62,7 @@ export const LumiRegister = () => {
         marginBottom: 5,
       }}
     >
-      {" "}
-      <button onClick={goBack}>va hacia atras</button>
+      <GoBack route={RoutesNames.genderAgeRegister} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2}>
           <AppText text="¿Qué género te gustaría que tuviera?" mt />
@@ -167,20 +166,25 @@ export const LumiRegister = () => {
                 direction={"row"}
                 sx={{ justifyContent: "center", alignItems: "center" }}
               >
-                {lumis1.map(lumi => (
-                  <AppSvgButton
-                    key={`lumiRegister${lumi.lumiColor}`}
-                    internValue={lumi.lumiColor}
-                    onChange={onChange}
-                    value={value}
-                  >
-                    <img
-                      src={lumi.icon}
-                      style={iconStyle}
-                      alt={`${lumi.lumiColor}lumi`}
-                    />
-                  </AppSvgButton>
-                ))}
+                {lumis1.map(lumi => {
+                  const onClick = () => {
+                    onChange(lumi.lumiColor)
+                    dispatch(changeLumiColor(lumi.lumiColor))
+                  }
+                  return (
+                    <AppSvgButton
+                      key={`lumiRegister${lumi.lumiColor}`}
+                      selected={lumi.lumiColor === value}
+                      onClick={onClick}
+                    >
+                      <img
+                        src={lumi.icon}
+                        style={iconStyle}
+                        alt={`${lumi.lumiColor}lumi`}
+                      />
+                    </AppSvgButton>
+                  )
+                })}
               </Stack>
             )}
           />

@@ -19,6 +19,8 @@ const initialState: AuthSliceState = {
     terms: false,
   },
   correctProcess: false,
+  userId: "",
+  JWT: "",
   status: "idle",
 }
 
@@ -54,11 +56,17 @@ export const authSlice = createAppSlice({
     selectRegisterForm: auth => auth.registerForm,
     selectStatus: auth => auth.status,
     selectIsCorrectProcess: auth => auth.correctProcess,
+    selectUserId: auth => auth.userId,
+    selectJWT: auth => auth.JWT,
   },
 })
 
 export const { updateAuthFormValues, submitAuthForm, changeLumiColor } =
   authSlice.actions
 
-export const { selectRegisterForm, selectStatus, selectIsCorrectProcess } =
-  authSlice.selectors
+export const {
+  selectRegisterForm,
+  selectStatus,
+  selectIsCorrectProcess,
+  selectUserId,
+} = authSlice.selectors
