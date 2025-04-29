@@ -12,6 +12,7 @@ export const selectPersonalData = createSelector(
     terms,
   }),
 )
+
 export const selectLumiParams = createSelector(
   selectRegisterForm,
   ({ lumiName, customName, color, lumiGender }) => ({
@@ -21,6 +22,7 @@ export const selectLumiParams = createSelector(
     lumiGender,
   }),
 )
+
 export const selectGenderAge = createSelector(
   selectRegisterForm,
   ({ gender, age }) => ({

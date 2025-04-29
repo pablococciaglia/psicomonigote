@@ -1,4 +1,4 @@
-import type { Gender, LumiColor, LumiName } from "../../Common/Types"
+import type { Gender, LumiColor, LumiName, Status } from "../../Common/Types"
 
 export type InputsGenderAge = {
   gender: Gender | undefined
@@ -25,7 +25,7 @@ export type RegisterForm = LumiInputs & PersonalDataInputs & InputsGenderAge
 
 export interface AuthSliceState {
   registerForm: RegisterForm
-  status: "idle" | "loading" | "failed"
+  status: Status
   correctProcess: boolean
   userId: string
   JWT: string

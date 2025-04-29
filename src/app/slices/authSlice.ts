@@ -1,7 +1,8 @@
 import type { PayloadAction } from "@reduxjs/toolkit"
 import { createAppSlice } from "../../app/createAppSlice"
-import { LumiColor, LumiName } from "../../Common/Types"
+import { LumiColor, LumiName, Status } from "../../Common/Types"
 import type { AuthSliceState, RegisterForm } from "./authTypes"
+import { authLoginApi } from "../../service/authApi"
 
 const initialState: AuthSliceState = {
   registerForm: {
@@ -21,7 +22,7 @@ const initialState: AuthSliceState = {
   correctProcess: false,
   userId: "",
   JWT: "",
-  status: "idle",
+  status: Status.IDLE,
 }
 
 export const authSlice = createAppSlice({
@@ -51,6 +52,33 @@ export const authSlice = createAppSlice({
         lumiName: lumiName === LumiName.lumi ? lumiName : customName,
       })
     }),
+    submitLogin: create.asyncThunk(
+      async (data: { email: string; password: string }) => {
+        const response = await authLoginApi(data)
+        console.log(response)
+        return response
+      },
+      {
+        pending: state => {
+          state.status = Status.LOADING
+        },
+        fulfilled: (state, action) => {
+          state.status = Status.IDLE
+          state.JWT = action.payload?.JWT!
+          state.userId = action.payload?.userId!
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              JWT: action.payload?.JWT,
+              userId: action.payload?.userId,
+            }),
+          )
+        },
+        rejected: state => {
+          state.status = Status.FAILED
+        },
+      },
+    ),
   }),
   selectors: {
     selectRegisterForm: auth => auth.registerForm,
@@ -58,15 +86,21 @@ export const authSlice = createAppSlice({
     selectIsCorrectProcess: auth => auth.correctProcess,
     selectUserId: auth => auth.userId,
     selectJWT: auth => auth.JWT,
+    selectIsLoading: auth => auth.status,
   },
 })
 
-export const { updateAuthFormValues, submitAuthForm, changeLumiColor } =
-  authSlice.actions
+export const {
+  updateAuthFormValues,
+  submitAuthForm,
+  changeLumiColor,
+  submitLogin,
+} = authSlice.actions
 
 export const {
   selectRegisterForm,
   selectStatus,
   selectIsCorrectProcess,
   selectUserId,
+  selectIsLoading,
 } = authSlice.selectors

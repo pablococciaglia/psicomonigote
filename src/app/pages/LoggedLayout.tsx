@@ -2,6 +2,7 @@ import { Navigate } from "react-router"
 import { Outlet } from "react-router"
 import { useAppSelector } from "../hooks"
 import { selectUserId } from "../slices/authSlice"
+import { Navbar } from "./Navbar/Navbar"
 
 export const LoggedLayout = () => {
   const userId = useAppSelector(selectUserId)
@@ -10,6 +11,7 @@ export const LoggedLayout = () => {
   }
   return (
     <>
+      <Navbar />
       <Outlet />
     </>
   )

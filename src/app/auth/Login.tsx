@@ -4,6 +4,8 @@ import { AppButton } from "../../components/formComponents/AppButton"
 import { useNavigate } from "react-router"
 import { AppInputText } from "../../components/formComponents/AppInputText"
 import { RoutesNames } from "../Routes"
+import { submitLogin } from "../slices/authSlice"
+import { useAppDispatch } from "../hooks"
 
 type Inputs = {
   email: string
@@ -11,6 +13,7 @@ type Inputs = {
 }
 
 export const Login = () => {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const initialState: Inputs = {
     email: "",
@@ -23,7 +26,7 @@ export const Login = () => {
   } = useForm<Inputs>({
     values: initialState,
   })
-  const onSubmit: SubmitHandler<Inputs> = data => console.log(data)
+  const onSubmit: SubmitHandler<Inputs> = data => dispatch(submitLogin(data))
   return (
     <>
       <Box

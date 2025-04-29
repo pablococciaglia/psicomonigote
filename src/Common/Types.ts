@@ -19,3 +19,9 @@ export const enum LumiName {
   lumi = "Lumi",
   change = "CHANGE",
 }
+
+export const enum Status {
+  LOADING = "loading",
+  IDLE = "idle",
+  FAILED = "failed",
+}

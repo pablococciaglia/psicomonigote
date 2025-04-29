@@ -1,6 +1,8 @@
 import { type FC } from "react"
 import { styled } from "@mui/material/styles"
 import Button from "@mui/material/Button"
+import { useAppSelector } from "../../app/hooks"
+import { selectIsAnyLoading } from "../../app/commonSelectors"
 
 const StyledButton = styled(Button)({
   boxShadow: "none",
@@ -23,19 +25,18 @@ const StyledButton = styled(Button)({
 })
 
 interface AppButtonProps {
-  loading?: boolean
   text: string
   type?: "button" | "submit" | "reset"
   width?: "fit-content"
   onClick?: () => void
 }
 export const AppButton: FC<AppButtonProps> = ({
-  loading,
   text,
   type,
   width,
   onClick,
 }) => {
+  const loading = useAppSelector(selectIsAnyLoading)
   return (
     <StyledButton
       type={type}
